@@ -295,3 +295,36 @@ a:focus, a:hover {
 footer {
   padding: 5rem 0;
 }
+
+
+.see-more-btn {
+  margin-top: 20px;
+}
+
+.target {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.not-ready {
+  background-color: #111;
+}
+
+.ready {
+  background-color: #64a19d !important;
+}
+
+.scoreboard-box {
+  padding: 20px;
+}
+
+.info {
+  margin: 10px auto;
+}
+
+.reaction-test-box {
+  color: #fff;
+}
