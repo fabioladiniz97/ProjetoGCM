@@ -17,37 +17,62 @@ class App {
 
 		this.targetCircle.addEventListener("click", e=>{
 
+			this.btnStart.classList.contains('disabled');
+
 			if (this.situation == "waiting") {
 				this.situation = "closed";
-				this.targetCircle.classList.remove("ready");
-				this.btnStart.classList.remove("disabled");
 				let date = new Date();
 				this.endTime = date.getTime();
 				this.scoreboard();
 
-				//alert("Acertou");
+				this.showOnTarget();
+
+				setTimeout(()=>{
+					this.targetCircle.classList.remove("ready");
+					this.targetCircle.classList.remove("result-good");
+					this.targetCircle.classList.remove("result-bad");
+					this.btnStart.classList.remove("disabled");
+					this.targetCircle.innerHTML = "";
+				}, 3500);
+
 			} else if (this.situation == "closed") {
 				alert("Ainda não...");
-			} else {
-				alert("Inicie o teste primeiro");
 			}
 
 		});
 
 		this.btnStart.addEventListener("click", e=>{
 
-			this.username = prompt("Informe o seu nome:");
-			setTimeout(function(){
+			if (!this.btnStart.classList.contains("disabled")) {
 
-			}, 1000);
-			if (this.username) {
-				this.initTarget();
-				this.btnStart.classList.add("disabled");
-			} else {
-				alert("Nome inválido");
+				this.username = prompt("Informe o seu nome:");
+				setTimeout(function(){
+
+				}, 1000);
+				if (this.username) {
+					this.initTarget();
+					this.btnStart.classList.add("disabled");
+				} else {
+					alert("Nome inválido");
+				}
+
 			}
 
 		});
+
+	}
+
+	showOnTarget(){
+
+		this.situation = 'closed';
+
+		if (this.getUserPosition() == 1) {
+			this.targetCircle.classList.add("result-good");
+			this.targetCircle.innerHTML = "1º";
+		} else {
+			this.targetCircle.classList.add("result-bad");
+			this.targetCircle.innerHTML = `${this.getUserPosition()}º`;
+		}
 
 	}
 
@@ -75,6 +100,25 @@ class App {
 			c++;
 
 		});
+
+	}
+
+	getUserPosition(){
+
+		let c = 0;
+		let position = null;
+
+		this.scores.forEach(player=>{
+
+			if (player.username == this.username) {
+				position = c + 1;
+				return false;
+			}
+			c++;
+
+		});
+
+		return position;
 
 	}
 
