@@ -7,6 +7,7 @@ class App {
 		this.startTime;
 		this.endTime;
 		this.username;
+		this.scores = [];
 	}
 
 	initialize(){
@@ -24,7 +25,7 @@ class App {
 				this.endTime = date.getTime();
 				this.scoreboard();
 
-				alert("Acertou");
+				//alert("Acertou");
 			} else if (this.situation == "closed") {
 				alert("Ainda não...");
 			} else {
@@ -52,10 +53,28 @@ class App {
 
 	scoreboard(){
 
+		this.scores.push({
+			username: this.username,
+			timeScore: this.getSeconds()
+		});
+
+		this.scores.sort((a, b)=>{
+			return a.timeScore - b.timeScore;
+		});
+
 		let olElement = document.getElementById("scoreboard-list");
 		let li = document.createElement("li");
 		li.innerHTML = `${this.username} <strong class="float-right">${this.getSeconds()} segundos</strong>`;
 		olElement.appendChild(li);
+
+		let c = 0;
+
+		olElement.querySelectorAll("li").forEach(el=>{
+			
+			el.innerHTML = `${this.scores[c].username} <strong class="float-right">${this.scores[c].timeScore} segundos</strong>`;
+			c++;
+
+		});
 
 	}
 
