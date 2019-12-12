@@ -328,3 +328,15 @@ footer {
 .reaction-test-box {
   color: #222;
 }
+
+.scoreboard-box {
+  border: solid;
+  border-width: 0.5px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 1px 1px 13px 3px grey;
+}
+
+.scoreboard-box h2 {
+  margin-bottom: 30px;
+}
