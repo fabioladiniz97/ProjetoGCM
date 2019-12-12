@@ -311,10 +311,21 @@ footer {
 
 .not-ready {
   background-color: #111;
+  color: white;
+  padding: 17%;
+  font-size: 72px;
 }
 
 .ready {
-  background-color: #64a19d !important;
+  background-color: #64a19d;
+}
+
+.result-good {
+  background-color: #34bf49;
+}
+
+.result-bad {
+  background-color: #ed1c24;
 }
 
 .scoreboard-box {
